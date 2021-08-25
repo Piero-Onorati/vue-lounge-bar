@@ -1,0 +1,58 @@
+// SPAN
+@mixin span {
+    font-size: 18px;
+    color:#bc9a65;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+
+@mixin h2{
+    font-size: 34px;
+    color:whitesmoke;
+    text-transform: uppercase;
+    padding: 15px 0;
+    letter-spacing: 2px;
+    line-height: 46px;
+}
+
+@mixin p{
+    color:#bc9a65;
+    font-weight: 200;
+    line-height: 28px;
+}
+
+@mixin button {
+    background-color: #bc9a65;
+    outline:none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+    border-radius: 0;
+    padding: 8px 15px;
+    font-family: 'Sora';
+    font-size: 15px;
+    font-weight: 200;
+    cursor: pointer;
+    border:1px solid #bc9a65;
+
+    &:hover{
+        background-color: #a7834a;
+    }
+    
+}
+
+
+@mixin search-input {
+    margin-right: 15px;
+    padding:8px 15px;
+    background: none;
+    outline: none;
+    color: white;
+    transition: 0.3s;
+    border: 1px solid white;
+    font-size: 15px;
+}
+   

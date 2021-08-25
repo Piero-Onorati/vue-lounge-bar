@@ -1,0 +1,21 @@
+@import "~@fontsource/sora/index.css"; /*Defaults to weight 400.*/
+@import "~@fontsource/sora/200.css";
+@import "~@fontsource/sora/300.css";
+@import "~@fontsource/roboto/index.css";   /*Defaults to weight 400.*/
+@import "~@fontsource/roboto/300.css"; 
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Roboto";
+}
+
+.container{
+    width:70%;
+    margin:0 auto
+}
+
