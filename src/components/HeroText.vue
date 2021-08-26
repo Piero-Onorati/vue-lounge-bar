@@ -2,9 +2,8 @@
     <div class="hero-text-box">
         <div class="hero-text">
             <span>EST. | 2023</span> 
-            <h1>2100</h1>
-            <h2>CLUB</h2>
-            <p> 500 Terry Francois St.</p>
+            <span class="title">2100</span>
+            <h2 class="subtitle">CLUB</h2>
             <p> 500 Terry Francois St.</p>
             <p>  San Francisco, CA 94158 </p>
             <p>  Open from 5PM - 2AM </p>
@@ -37,6 +36,27 @@ export default {
         padding:30px 20px ;
         outline: 2px solid #bc9a65;
         position: relative;
+
+        .title{
+            display: block;
+            font-family: 'Sora';
+            font-size: 50px;
+            color: white;
+        }
+
+        .subtitle{
+            display: block;
+            font-family: 'Sora';
+            margin-top: -8px;;
+            font-size: 42px;
+            font-weight: 200;
+            padding-bottom: 10px;
+        }
+
+        p{
+            line-height: 24px;
+            font-weight: 200;
+        }
 
         /* &::after{
             content: '';

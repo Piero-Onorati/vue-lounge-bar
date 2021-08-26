@@ -9,38 +9,44 @@
         <div class="col-xs-12 col-md-4">
           <h2>drinking menu</h2>
           <p>Get people exited about your menu and your food. Give your menu a brief description</p>
-          <input type="text">
         </div>
       </div>
 
       <Filters
         :categories=categories
-        :glasses=glasses
-        :ingredients=ingredients
         :alcoholic=alcoholic
+        @vModelCategory="receveidCategory"
+        @vModelAlchol="receveidAlchol"
+        @vModelWord="receveidWord"
       />
 
       <!-- cocktails -->
       <section>
         <!-- Title Section -->
-        <h2>cocktails</h2>
+        <h2 class="cocktails_title">cocktails</h2>
         <!-- Content section: list of all cocktail -->
-        <div class="cocktails">
-          <div v-for="cocktail in cocktails" :key="cocktail.idDrink" class="cocktail-wrapper col-xs-12 col-md-4 col-lg-3">
+        <div class="cocktails" v-if="filterCocktails.length !== 0">
+          <div v-for="cocktail in filterCocktails" :key="cocktail.idDrink" class="cocktail-wrapper col-xs-12 col-md-4 col-lg-3">
             <DrinkCard :cocktail=cocktail />
           </div>
+        </div>
+        <div class="cocktails"  v-else>
+            <h3 class="warning">It seems that the drink you looking for is not in our Drinking Menu. Don't Worry!!! Our Barmen will prepare it for you.</h3>
         </div>
       </section>
 
       <!-- Beer and Wine Cocktails -->
       <section>
         <!-- Title Section -->
-        <h2>Beer and Wine Cocktails</h2>
-        <div class="cocktails">
+        <h2 class="cocktails_title">Beer and Wine Cocktails</h2>
+        <div class="cocktails" v-if="filterBAndWCocktails.length !== 0">
           <!-- Content section: list of all cocktail -->
-          <div v-for="cocktail in bAndWCocktails" :key="cocktail.idDrink" class="cocktail-wrapper col-xs-12 col-md-4 col-lg-3">
+          <div v-for="cocktail in filterBAndWCocktails" :key="cocktail.idDrink" class="cocktail-wrapper col-xs-12 col-md-4 col-lg-3">
             <DrinkCard :cocktail=cocktail />
           </div>
+        </div>
+        <div class="cocktails" v-else>
+            <h3 class="warning">It seems that the drink you looking for is not in our Drinking Menu. Don't Worry!!! Our Barmen will prepare it for you.</h3>
         </div>
       </section>
   
@@ -68,11 +74,24 @@ export default {
       otherDrinks:['beer', 'wine'],
       bAndWCocktails:[],
       categories:[],
-      glasses:[],
-      ingredients:[],
-      alcoholic:[]
+      alcoholic:[],
+      selectedCategory:'',
+      selectedAlchol:'',
+      search:''
     }
   },
+
+   computed:{
+    /* apply both filters (for category and for alchol) + search*/
+    filterCocktails: function(){
+      return this.filterByWord(this.filterByCategory(this.filterByAlchol(this.cocktails)));
+    },
+
+    /* apply both filters (for category and for alchol) + search*/
+    filterBAndWCocktails: function(){
+      return this.filterByWord(this.filterByCategory(this.filterByAlchol(this.bAndWCocktails)));
+    }
+   },
 
   mounted(){
 
@@ -98,7 +117,7 @@ export default {
             }
             return element
           });
-          // console.log(this.cocktails);
+          console.log(this.cocktails);
         });
         
     });
@@ -143,32 +162,6 @@ export default {
         // console.log(this.categories);
       });
 
-    // populate the array glasses
-    axios
-      .get(this.urlbyList,{
-        params:{
-          g:'list'
-        }
-      }
-        )
-      .then( response =>{
-        this.glasses = response.data.drinks.map(el=>{return el.strGlass})
-        // console.log(this.glasses);
-      });
-
-    // populate the array ingredients
-    axios
-      .get(this.urlbyList,{
-        params:{
-          i:'list'
-        }
-      }
-        )
-      .then( response =>{
-        this.ingredients = response.data.drinks.map(el=>{return el.strIngredient1})
-        // console.log(this.ingredients);
-      });
-
     // populate the array alcoholic
     axios
       .get(this.urlbyList,{
@@ -182,6 +175,47 @@ export default {
         // console.log(this.alcoholic);
       });
   
+  },
+
+  methods:{
+    receveidCategory(arg1){
+      this.selectedCategory=arg1;
+    },
+
+    receveidAlchol(arg2){
+     this.selectedAlchol=arg2;
+    },
+
+    receveidWord(arg3){
+     this.search=arg3;
+    },
+
+    filterByCategory(array){
+      return array.filter(element =>{
+        if (this.selectedCategory == '' || this.selectedCategory == 'All') {
+          return array;
+        }
+        else{
+          return element.strCategory == this.selectedCategory ;
+        }
+      });
+    },
+    filterByAlchol(array){
+      return array.filter(element =>{
+        if (this.selectedAlchol == '' || this.selectedAlchol == 'All') {
+          return array;
+        }
+        else{
+          return element.strAlcoholic == this.selectedAlchol ;
+        }
+      });
+    },
+
+    filterByWord(array){
+      return array.filter(element=>{
+        return element.strDrink.toLowerCase().match(this.search.toLowerCase())
+      });
+    }
   }
 
 }
@@ -206,7 +240,8 @@ export default {
 
   h2{
     @include h2;
-    text-align: center
+    text-align: center;
+    padding-top:60px;
   }
 
   p{
@@ -217,9 +252,21 @@ export default {
   .container{
     background-color:#141516;
 
+    .cocktails_title{
+      border-bottom: 3px solid #373838;
+      padding-bottom: 20px;
+    }
+
     .cocktails{
+      padding: 50px 0;
       display: flex;
       flex-flow: row wrap;
+
+      .warning{
+        color:grey;
+        font-size:22px;
+        padding: 50px 0;
+      }
 
     }
 

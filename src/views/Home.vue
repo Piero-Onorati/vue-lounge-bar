@@ -10,7 +10,7 @@
     <About/>
     <div class="banner">
     </div>
-
+    <Contacts/>
   </div>
  
 </template>
@@ -18,13 +18,15 @@
 <script>
 // @ is an alias to /src
 import About from '@/components/About.vue';
-import HeroText from '@/components/HeroText.vue'
+import HeroText from '@/components/HeroText.vue';
+import Contacts from '@/components/Contacts.vue';
 
 export default {
   name: 'Home',
   components: {
     About,
-    HeroText
+    HeroText,
+    Contacts
   }
 }
 </script>
