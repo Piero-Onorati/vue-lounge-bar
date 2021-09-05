@@ -14,7 +14,7 @@
 
           <!-- Row: cocktail image + text for cocktails -->
           <div class="row center-lg">
-                <div class="item_row  col-xs-12 col-md-6 col-lg-5"> 
+                <div class="item_row  col-xs-12 col-md-6 col-lg-5" > 
                     <div class="item_row_text item-right">
                         <span>happy hour</span>
                         <h2>craft cocktails tuesday</h2>
@@ -24,14 +24,22 @@
                     </div>
                     
                 </div>
-                <div class="image_item_row box col-xs-12 col-md-6 col-lg-5">
+                <div class="image_item_row box col-xs-12 col-md-6 col-lg-5" 
+                    data-aos="fade-left"
+                    data-aos-offset="300"
+                    data-aos-easing="ease-in-sine"
+                >
                     <img src="../assets/img/drink.jpg" alt="drink" class="img_item">
                 </div>                  
           </div>
 
           <!-- Row: text for events + event image -->
           <div class="row center-lg">
-                <div class="image_item_row col-xs-12 col-md-6 col-lg-5"> 
+                <div class="image_item_row col-xs-12 col-md-6 col-lg-5"
+                data-aos="fade-right"
+                data-aos-offset="300"
+                data-aos-easing="ease-in-sine"
+                > 
                     <img src="../assets/img/live-shows.jpg" alt="live-shows" class="img_item">
                 </div>
                 <div class="item_row   col-xs-12 col-md-6 col-lg-5">

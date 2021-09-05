@@ -1,9 +1,9 @@
 <template>
     <footer>
         <div class="container">
-            <div class="row">
+            <div class="row center-xs between-md">
                 <!-- left part footer -->
-                <div class="left-part-footer col-xs-12 col-md-6 col-lg-7">
+                <div class="left-part-footer col-xs-12 col-md-6 col-lg-7 middle-xs top-md">
                     <h3>Join the Club &#38; Get Updates on Special Events </h3>
                     <div class="search-box">
                         <input type="mail" placeholder="Email...">
@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <!-- right part footer -->
-                <div class="right-part-footer col-xs-12 col-md-6 col-lg-5">
+                <div class="right-part-footer col-xs-12 col-md-6 col-lg-5 middle-xs bottom-md">
                     <!-- social icons -->
                     <div class="social-icons">
                         <div class="icon"><i class="fab fa-foursquare"></i></div>
@@ -40,9 +40,11 @@ export default {
 footer{
     background-color: #111213;
     color: whitesmoke;
-    padding: 40px 0;
 
     .left-part-footer{
+        display: flex;
+        flex-direction: column;
+        padding: 40px 0;
 
         h3{
             font-weight: 300;
@@ -63,9 +65,9 @@ footer{
     }
 
     .right-part-footer{
-       display: flex;
-       align-items: flex-end;
-       flex-direction: column;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 0;
 
         .social-icons{
             display: flex;
